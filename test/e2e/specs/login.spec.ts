@@ -11,9 +11,4 @@ describe('Trello\' Login page testing', () => {
     await page.navigateTo();
     expect(await page.getTitlePage()).toEqual('Log in to Trello');
   });
-
-  it('When user fill his credentials into login page he should see his board page', async () => {
-    await page.navigateTo();
-    console.log(await page.getCurrentPage());
-  });
 });
