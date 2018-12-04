@@ -11,11 +11,6 @@ describe('Trello\'s Home page testing', () => {
     page = new Home(url);
   });
 
-  it('When user acces trello app he should see the default home page', async () => {
-    await page.loadPage();
-    expect(await page.getElement(loginButton).isDisplayed()).toBe(true);
-  });
-
   it('When user click on login button he should see the login page', async () => {
     await page.loadPage();
     login = await page.isPageLoginLoaded(loginButton);
