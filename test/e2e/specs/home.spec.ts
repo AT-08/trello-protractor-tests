@@ -1,22 +1,24 @@
-import {Home} from "../pages/home.po";
+import {Home} from '../pages/home.po';
+import {Login} from '../pages/login.po';
 
 describe('Trello\'s Home page testing', () => {
   let page: Home;
-  let logInURL = 'login?returnUrl=%2F';
-  let loginButton = `a[href*="/${logInURL}"]`;
+  let login: Login;
+  const url = 'https://trello.com/';
+  const loginButton = 'a[href*="/login?returnUrl=%2F"]';
 
   beforeEach(() => {
-    page = new Home();
+    page = new Home(url);
   });
 
   it('When user acces trello app he should see the default home page', async () => {
-    await page.navigateTo();
-    expect(await page.getButton(loginButton).isDisplayed()).toBe(true);
+    await page.loadPage();
+    expect(await page.getElement(loginButton).isDisplayed()).toBe(true);
   });
 
   it('When user click on login button he should see the login page', async () => {
-    await page.navigateTo();
-    await page.getButton(loginButton).click();
-    expect(await page.getCurrentPage()).toContain(logInURL);
+    await page.loadPage();
+    login = await page.isPageLoginLoaded(loginButton);
+    expect(await login.getTitlePage()).toEqual('Log in to Trello');
   });
 });

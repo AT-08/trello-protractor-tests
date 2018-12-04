@@ -1,16 +1,27 @@
 import {browser, by, element} from 'protractor';
+import {Dashboard} from './dashboard.po';
+import {Helper} from '../utils/helper';
 
- export class Login {
-     navigateTo() {
-       browser.waitForAngularEnabled(false);
-       return browser.get('https://trello.com/login?returnUrl=%2F');
-     }
+export class Login {
+  URL: string;
 
-     getTitlePage() {
-       return element(by.css('h1')).getText();
-     }
+  constructor(url: string) {
+    this.URL = url;
+  }
 
-     getCurrentPage() {
-       return browser.getCurrentUrl();
-     }
- }
+  async loadPage() {
+    return await browser.get(this.URL);
+  }
+
+  async getTitlePage() {
+    await Helper.browserWait(element(by.css('h1')), 10000);
+    return await element(by.css('h1')).getText();
+  }
+
+  async tryToLogIn() {
+    await element(by.css('[name="user"]')).sendKeys('nestor.otondo@fundacion-jala.org');
+    await element(by.css('[name="password"]')).sendKeys('Zeus2Deus');
+    await element(by.css('#login')).click();
+    return new Dashboard();
+  }
+}
