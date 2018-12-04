@@ -18,6 +18,6 @@ export class Dashboard {
     await element(by.css('button[title="blue"]')).click();
     await element(by.css('button[type="submit"]')).click();
     await Helper.browserWait(element(by.css(`div[title="${name}"]`)), 30000);
-    return await element(by.css(`div[title="${name}"]`)).isPresent();
+    return element(by.css(`div[title="${name}"]`)).isPresent();
   }
 }
