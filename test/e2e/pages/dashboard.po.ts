@@ -1,13 +1,14 @@
-import {browser, by, element, ExpectedConditions} from 'protractor';
+import {browser, by, element} from 'protractor';
+
+import {Helper} from '../utils/helper';
 
 export class Dashboard {
   navigateTo() {
-    browser.waitForAngularEnabled(false);
     return browser.get('https://trello.com/nestorotondo/boards');
   }
 
   async getMemberInitials() {
-    await browser.wait(ExpectedConditions.visibilityOf(element(by.css('span.member-initials'))), 30000);
+    await Helper.browserWait(element(by.css('span.member-initials')), 30000);
     return await element(by.css('span.member-initials')).getText();
   }
 }

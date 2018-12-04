@@ -1,4 +1,4 @@
-import {Config} from 'protractor'
+import {browser, Config} from 'protractor'
 
 export let config: Config = {
   framework: 'jasmine',
@@ -9,5 +9,8 @@ export let config: Config = {
     './test/e2e/specs/*.spec.js'
   ],
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  noGlobals: true
+  noGlobals: true,
+  onPrepare: () => {
+    browser.waitForAngularEnabled(false);
+  }
 }

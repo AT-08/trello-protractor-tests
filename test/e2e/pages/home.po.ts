@@ -1,16 +1,24 @@
 import {browser, by, element} from "protractor";
+import {Login} from './login.po';
 
 export class Home {
-  navigateTo() {
-    browser.waitForAngularEnabled(false);
-    return browser.get('https://trello.com/');
+  URL: string;
+
+  constructor(url: string) {
+    this.URL = url;
   }
 
-  getButton(name: string) {
-    return element(by.css(name));
+  async loadPage() {
+    return await browser.get(this.URL);
   }
 
-  getCurrentPage() {
-    return browser.getCurrentUrl();
+  getElement(selector: string) {
+    return element(by.css(selector));
+  }
+
+  async isPageLoginLoaded(selector: string) {
+    const loginURL = await element(by.css(selector)).getAttribute('href');
+    await element(by.css(selector)).click();
+    return new Login(`${this.URL}${loginURL}`);
   }
 }
