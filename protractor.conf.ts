@@ -6,11 +6,11 @@ export let config: Config = {
     browserName: 'chrome'
   },
   specs: [
-    './test/e2e/specs/*.spec.js'
+    './e2e/specs/**/*.spec.js'
   ],
   seleniumAddress: 'http://localhost:4444/wd/hub',
   noGlobals: true,
   onPrepare: () => {
     browser.waitForAngularEnabled(false);
   }
-}
+};
