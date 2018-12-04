@@ -9,7 +9,7 @@ export class Home {
   }
 
   async loadPage() {
-    return await browser.get(this.URL);
+    return browser.get(this.URL);
   }
 
   getElement(selector: string) {

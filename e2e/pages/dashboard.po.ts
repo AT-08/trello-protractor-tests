@@ -9,6 +9,6 @@ export class Dashboard {
 
   async getMemberInitials() {
     await Helper.browserWait(element(by.css('span.member-initials')), 30000);
-    return await element(by.css('span.member-initials')).getText();
+    return element(by.css('span.member-initials')).getText();
   }
 }

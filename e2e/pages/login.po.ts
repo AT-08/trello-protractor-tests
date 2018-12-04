@@ -10,12 +10,12 @@ export class Login {
   }
 
   async loadPage() {
-    return await browser.get(this.URL);
+    return browser.get(this.URL);
   }
 
   async getTitlePage() {
     await Helper.browserWait(element(by.css('h1')), 10000);
-    return await element(by.css('h1')).getText();
+    return element(by.css('h1')).getText();
   }
 
   async tryToLogIn() {
