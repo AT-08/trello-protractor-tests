@@ -2,7 +2,7 @@ import {browser, Config} from 'protractor'
 
 export let config: Config = {
   framework: 'jasmine',
-  apabilities: {
+  capabilities: {
     browserName: 'chrome'
   },
   specs: [
