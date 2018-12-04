@@ -4,6 +4,8 @@ import {Helper} from '../utils/helper';
 
 export class Login {
   URL: string;
+  user: string = 'nestor.otondo@fundacion-jala.org';
+  password: string = 'Zeus2Deus';
 
   constructor(url: string) {
     this.URL = url;
@@ -19,8 +21,8 @@ export class Login {
   }
 
   async tryToLogIn() {
-    await element(by.css('[name="user"]')).sendKeys('nestor.otondo@fundacion-jala.org');
-    await element(by.css('[name="password"]')).sendKeys('Zeus2Deus');
+    await element(by.css('[name="user"]')).sendKeys(this.user);
+    await element(by.css('[name="password"]')).sendKeys(this.password);
     await element(by.css('#login')).click();
     return new Dashboard();
   }
