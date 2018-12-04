@@ -1,4 +1,4 @@
-import {browser, by, element} from "protractor";
+import {browser, by, element} from 'protractor';
 import {Login} from './login.po';
 
 export class Home {

@@ -1,0 +1,20 @@
+sudo: required
+
+language: node_js
+
+node_js:
+- 8
+
+addons:
+  sonarcloud:
+    organization: "at-08"
+    token:
+      secure: $SONAR_TOKEN
+
+script:
+- npm install
+- sonar-scanner
+- npm run lint
+
+notifications:
+  email: true
