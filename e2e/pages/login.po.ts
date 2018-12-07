@@ -2,6 +2,7 @@ import {browser, by, element} from 'protractor';
 import {Dashboard} from './dashboard.po';
 import {Helper} from '../utils/helper';
 import {CommonActions} from '../utils/CommonActions';
+import data from '../utils/environment.json';
 
 export class Login {
     URL: string;
@@ -21,10 +22,10 @@ export class Login {
 
     async LogInWithUser() {
         const userTextInput = element(by.css('[name="user"]'));
-        await CommonActions.setValue(userTextInput, 'rocku3');
+        await CommonActions.setValue(userTextInput, data.user1);
 
         const passTextInput = element(by.css('[name="password"]'));
-        await CommonActions.setValue(passTextInput, 'Pepelink21');
+        await CommonActions.setValue(passTextInput, data.pass1);
 
         const loginButton = element(by.css('#login'));
         await CommonActions.click(loginButton);

@@ -13,7 +13,7 @@ export class Dashboard {
         return element(by.css('span.member-initials')).getText();
     }
 
-    async tryToCreateNewBoard(name: string) {
+    async createDashBoard(name: string) {
         const addBoardButton = element(by.css('a.mod-add'));
         await CommonActions.click(addBoardButton)
         const titleTextInput = element(by.css('.subtle-input'));

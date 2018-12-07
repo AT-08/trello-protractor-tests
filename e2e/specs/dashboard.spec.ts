@@ -15,6 +15,6 @@ describe('', () => {
     login.loadPage();
     board = await login.LogInWithUser();
     expect(await board.getMemberInitials()).toEqual('R');
-    expect(await board.tryToCreateNewBoard(titleExpected)).toBe(true);
+    expect(await board.createDashBoard(titleExpected)).toBe(true);
   });
 });
