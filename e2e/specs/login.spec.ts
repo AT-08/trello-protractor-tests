@@ -17,7 +17,7 @@ describe('Trello\' Login page testing', () => {
 
   it('When user click on Login button from login page he should see his boards page', async () => {
     await page.loadPage();
-    dash = await page.tryToLogIn();
+    dash = await page.LogInWithUser();
     expect(await dash.getMemberInitials()).toEqual('NO');
   });
 });

@@ -13,8 +13,8 @@ describe('', () => {
 
   it('When user logged in his dashboard, he can create new board', async () => {
     login.loadPage();
-    board = await login.tryToLogIn();
-    expect(await board.getMemberInitials()).toEqual('NO');
+    board = await login.LogInWithUser();
+    expect(await board.getMemberInitials()).toEqual('R');
     expect(await board.tryToCreateNewBoard(titleExpected)).toBe(true);
   });
 });
