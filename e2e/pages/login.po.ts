@@ -7,6 +7,10 @@ import data from '../utils/environment.json';
 export class Login {
     URL: string;
 
+    userTextInput = element(by.css('[name="user"]'));
+    passTextInput = element(by.css('[name="password"]'));
+    loginButton = element(by.css('[id="login"][type="submit"]'));
+
     constructor(url: string) {
         this.URL = url;
     }
@@ -21,14 +25,9 @@ export class Login {
     }
 
     async LogInWithUser() {
-        const userTextInput = element(by.css('[name="user"]'));
-        await CommonActions.setValue(userTextInput, data.user1);
-
-        const passTextInput = element(by.css('[name="password"]'));
-        await CommonActions.setValue(passTextInput, data.pass1);
-
-        const loginButton = element(by.css('#login'));
-        await CommonActions.click(loginButton);
+        await CommonActions.setValue(this.userTextInput, data.user2);
+        await CommonActions.setValue(this.passTextInput, data.pass2);
+        await CommonActions.click(this.loginButton);
         return new Dashboard();
     }
 }

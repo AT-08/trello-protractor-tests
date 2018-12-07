@@ -2,19 +2,25 @@ import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
 
 describe('', () => {
-  let board: Dashboard;
-  let login: Login;
-  const url = 'https://trello.com/login?returnUrl=%2F';
-  const titleExpected = 'Test create new board';
+    let board: Dashboard;
+    let login: Login;
+    const url = 'https://trello.com/login?returnUrl=%2F';
+    const titleExpected = 'Test create new board';
 
-  beforeEach(() => {
-    login = new Login(url);
-  });
+    beforeEach(() => {
+        login = new Login(url);
+    });
 
-  it('When user logged in his dashboard, he can create new board', async () => {
-    login.loadPage();
-    board = await login.LogInWithUser();
-    expect(await board.getMemberInitials()).toEqual('R');
-    expect(await board.createDashBoard(titleExpected)).toBe(true);
-  });
+    it('When user logged in his dashboard, he can create new board', async () => {
+        const data = {
+            title: 'ASample',
+            background: 100,
+            privacy: 2,
+        };
+        await login.loadPage();
+        board = await login.LogInWithUser();
+        await board.createDashBoard(data);
+        // expect(await board.getMemberInitials()).toEqual('R');
+        // expect(await board.createDashBoard(titleExpected)).toBe(true);
+    });
 });
