@@ -3,17 +3,33 @@ import {Helper} from '../utils/helper';
 import {CommonActions} from '../utils/CommonActions';
 
 export class Dashboardcreation {
+    titleTextInput = element(by.css('.subtle-input'));
+    createDashboardButton = element(by.css('button[type="submit"]'));
+    // selectPrivacyButton = element(by.css('[class='subtle-chooser-trigger unstyled-button vis-chooser-trigger']'))
 
-    async setDashBoard(dataTable: any) {
-        const addBoardButton = element(by.css('a.mod-add'));
-        await CommonActions.click(addBoardButton);
-        const titleTextInput = element(by.css('.subtle-input'));
-        await CommonActions.setValue(titleTextInput, name);
-        const backgroundColor = element(by.css('button[title="blue"]'));
-        await CommonActions.click(backgroundColor);
-        const createDashboardButton = element(by.css('button[type="submit"]'));
-        await CommonActions.click(createDashboardButton);
-        await Helper.browserWait(element(by.css(`div[title="${name}"]`)), 30000);
-        return element(by.css(`div[title="${name}"]`)).isPresent();
+    async setDashBoard(data: { background: string; privacy: string; title: string }) {
+        const fillProjectInformation = {
+            title: () => this.setdashtitle(data.title),
+            background: () => this.setbackground(data.background),
+            privacy: () => this.setprivacy(data.privacy),
+        };
+        Object.keys(data).forEach((key) => {
+            fillProjectInformation[key].call();
+        });
+        await CommonActions.click(this.createDashboardButton);
+    }
+
+    private async setdashtitle(title: string) {
+        await CommonActions.setValue(this.titleTextInput, title);
+    }
+
+    private async setbackground(background: string) {
+        const backgroundColor = element(by.css(`button[title="${background}"]`));
+        await CommonActions.click(backgroundColor)
+    }
+
+    private setprivacy(privacy: string) {
+        const backgroundColor = element(by.css(`button[title="${background}"]`));
+        return undefined;
     }
 }

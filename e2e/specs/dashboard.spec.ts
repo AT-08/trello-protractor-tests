@@ -13,9 +13,9 @@ describe('', () => {
 
     it('When user logged in his dashboard, he can create new board', async () => {
         const data = {
-            title: 'ASample',
-            background: 100,
-            privacy: 2,
+            background: 'green',
+            privacy: 'private',
+            title: 'Apepetoro',
         };
         await login.loadPage();
         board = await login.LogInWithUser();
