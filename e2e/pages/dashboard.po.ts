@@ -7,8 +7,6 @@ import {Dashboardcreation} from './dashboardcreation.po';
  */
 export class Dashboard {
 
-    bytitleTextInput = by.css('.subtle-input');
-    bybackgroundColor = by.css('button[title="blue"]');
     bydashboardResumeButton = by.className('header-btn-text');
     byAddButton = by.css('a.mod-add');
 
@@ -16,8 +14,8 @@ export class Dashboard {
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
-        CommonActions.waitVisibility(initialsNameLabel);
-        return await initialsNameLabel.getText();
+        await CommonActions.waitVisibility(initialsNameLabel);
+        return initialsNameLabel.getText();
     }
 
     /**

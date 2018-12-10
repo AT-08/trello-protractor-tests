@@ -18,4 +18,10 @@ export class CommonActions {
     static async waitVisibility(element: ElementFinder) {
         await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
     }
+
+    static async waitVisibilityandSubmit(element: ElementFinder) {
+        await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
+        await element.submit();
+    }
+
 }

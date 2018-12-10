@@ -5,7 +5,7 @@ import {CommonActions} from '../utils/CommonActions';
  * This class makes the creation of a board.
  */
 export class Dashboardcreation {
-    locatorDashboardButton = by.css('button[type="submit"]');
+    locatorDashboardButton = by.css('.create-board-form button.primary');
     locatorTitleTextInput = by.css('.subtle-input');
     locatorPrivacyButton = by.css('[class="subtle-chooser-trigger unstyled-button vis-chooser-trigger"]');
 
@@ -16,7 +16,7 @@ export class Dashboardcreation {
     async setDashBoard(data: any) {
         this.fillData(data);
         const createDashboardButton = element(this.locatorDashboardButton);
-        await CommonActions.click(createDashboardButton);
+        await CommonActions.waitVisibilityandSubmit(createDashboardButton);
     }
 
     /**
