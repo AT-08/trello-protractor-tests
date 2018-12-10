@@ -1,16 +1,18 @@
 import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
+import {Dashboardcreation} from './dashboardcreation.po';
 
+/**
+ * This class is the beginning for select of create a board, also can create a team.
+ */
 export class Dashboard {
 
-    titleTextInput = element(by.css('.subtle-input'));
-    backgroundColor = element(by.css('button[title="blue"]'));
-    createDashboardButton = element(by.css('button[type="submit"]'));
-    dashboardResumeButton = element(by.className('header-btn-text'));
+    bytitleTextInput = by.css('.subtle-input');
+    bybackgroundColor = by.css('button[title="blue"]');
+    bydashboardResumeButton = by.className('header-btn-text');
+    byAddButton = by.css('a.mod-add');
 
-    private _dashtitle: string;
-    private _background: string;
-    private _privacy: string;
+    private db: Dashboardcreation;
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
@@ -19,40 +21,12 @@ export class Dashboard {
     }
 
     /**
-     * Test.
+     * This make the creation of the dashboard.
      * @param data { background: string; privacy: string; title: string }
      */
     async createDashBoard(data: any) {
-        const fillProjectInformation = {
-            title: () => this.setdashtitle(data.title),
-            background: () => this.setbackground(data.background),
-            privacy: () => this.setprivacy(data.privacy),
-        };
-        Object.keys(data).forEach((key) => {
-            fillProjectInformation[key].call();
-        });
-        const addBoardButton = element(by.css('a.mod-add'));
-        await CommonActions.click(addBoardButton);
-        await CommonActions.setValue(this.titleTextInput, fillProjectInformation.title());
-        await CommonActions.click(this.backgroundColor);
-        await CommonActions.click(this.createDashboardButton);
-        // const boardTitleTextInput = element(by.css(`div[title="${data}"]`));
-        // await CommonActions.waitVisibility(boardTitleTextInput);
-        // return boardTitleTextInput.isPresent();
-    }
-
-    setdashtitle(value: string) {
-        this._dashtitle = value;
-        return this._dashtitle;
-    }
-
-    setbackground(value: string) {
-        this._background = value;
-        return this._background;
-    }
-
-    setprivacy(value: string) {
-        this._privacy = value;
-        return this._privacy
+        await CommonActions.click(element(this.byAddButton));
+        this.db = new Dashboardcreation();
+        await this.db.setDashBoard(data);
     }
 }

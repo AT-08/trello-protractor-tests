@@ -1,35 +1,65 @@
-import {browser, by, element, ElementFinder} from 'protractor';
-import {Helper} from '../utils/helper';
+import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
+/**
+ * This class makes the creation of a board.
+ */
 export class Dashboardcreation {
-    titleTextInput = element(by.css('.subtle-input'));
-    createDashboardButton = element(by.css('button[type="submit"]'));
-    // selectPrivacyButton = element(by.css('[class='subtle-chooser-trigger unstyled-button vis-chooser-trigger']'))
+    locatorDashboardButton = by.css('button[type="submit"]');
+    locatorTitleTextInput = by.css('.subtle-input');
+    locatorPrivacyButton = by.css('[class="subtle-chooser-trigger unstyled-button vis-chooser-trigger"]');
 
-    async setDashBoard(data: { background: string; privacy: string; title: string }) {
+    /**
+     * This set the data for fill the dashboard form and create the button.
+     * @param data { background: string; privacy: string; title: string }
+     */
+    async setDashBoard(data: any) {
+        this.fillData(data);
+        const createDashboardButton = element(this.locatorDashboardButton);
+        await CommonActions.click(createDashboardButton);
+    }
+
+    /**
+     * Make a map for fill the dashboard.
+     * @param data { background: string; privacy: string; title: string }
+     */
+    private fillData(data: any) {
         const fillProjectInformation = {
-            title: () => this.setdashtitle(data.title),
-            background: () => this.setbackground(data.background),
-            privacy: () => this.setprivacy(data.privacy),
+            title: async () => await this.setdashtitle(data.title),
+            background: async () => await this.setbackground(data.background),
+            privacy: async () => await this.setprivacy(data.privacy),
         };
         Object.keys(data).forEach((key) => {
             fillProjectInformation[key].call();
         });
-        await CommonActions.click(this.createDashboardButton);
     }
 
+    /**
+     * This set the dashboard title.
+     * @param title Input.
+     */
     private async setdashtitle(title: string) {
-        await CommonActions.setValue(this.titleTextInput, title);
+        const titleTextInput = element(this.locatorTitleTextInput);
+        await CommonActions.setValue(titleTextInput, title);
     }
 
+    /**
+     * This set the color of the background.
+     * @param background Color input.
+     */
     private async setbackground(background: string) {
         const backgroundColor = element(by.css(`button[title="${background}"]`));
         await CommonActions.click(backgroundColor)
     }
 
-    private setprivacy(privacy: string) {
-        const backgroundColor = element(by.css(`button[title="${background}"]`));
-        return undefined;
+    /**
+     * This set the privacy of the dashboard.
+     * @param privacy Input.
+     */
+    private async setprivacy(privacy: string) {
+        const privacyButton = element(this.locatorPrivacyButton);
+        await CommonActions.click(privacyButton);
+        const selectPrivacy = element(by.css(`[class$="icon-${privacy}"]`));
+        await CommonActions.click(selectPrivacy);
     }
 }

@@ -16,7 +16,6 @@ export class Home {
 
     async isPageLoginLoaded(selector: string) {
         const linkButton = element(by.css(selector));
-        // CommonActions.waitVisibility(linkButton);
         const loginURL = await linkButton.getAttribute('href');
         await CommonActions.click(linkButton);
         return new Login(loginURL);
