@@ -25,9 +25,9 @@ export class Dashboardcreation {
      */
     private fillData(data: any) {
         const fillProjectInformation = {
-            title: async () => await this.setdashtitle(data.title),
-            background: async () => await this.setbackground(data.background),
-            privacy: async () => await this.setprivacy(data.privacy),
+            title: () => this.setdashtitle(data.title),
+            background: () => this.setbackground(data.background),
+            privacy: () => this.setprivacy(data.privacy),
         };
         Object.keys(data).forEach((key) => {
             fillProjectInformation[key].call();

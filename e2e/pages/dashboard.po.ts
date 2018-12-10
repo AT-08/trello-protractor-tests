@@ -16,7 +16,7 @@ export class Dashboard {
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
-        await CommonActions.waitVisibility(initialsNameLabel);
+        CommonActions.waitVisibility(initialsNameLabel);
         return await initialsNameLabel.getText();
     }
 
