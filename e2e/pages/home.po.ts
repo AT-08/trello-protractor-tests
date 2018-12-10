@@ -1,6 +1,5 @@
 import {browser, by, element} from 'protractor';
 import {Login} from './login.po';
-import {Helper} from '../utils/helper';
 import {CommonActions} from '../utils/CommonActions';
 
 export class Home {

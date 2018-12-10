@@ -1,6 +1,5 @@
 import {browser, by, element} from 'protractor';
 import {Dashboard} from './dashboard.po';
-import {Helper} from '../utils/helper';
 import {CommonActions} from '../utils/CommonActions';
 import data from '../utils/environment.json';
 
@@ -20,7 +19,7 @@ export class Login {
     }
 
     async getTitlePage() {
-        await Helper.browserWait(element(by.css('h1')), 10000);
+        await CommonActions.waitVisibility(element(by.css('h1')))
         return element(by.css('h1')).getText();
     }
 

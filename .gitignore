@@ -65,3 +65,6 @@ package-lock.json
 dist/
 tmp/
 .idea/
+
+# Environment json
+e2e/utils/environment.json
