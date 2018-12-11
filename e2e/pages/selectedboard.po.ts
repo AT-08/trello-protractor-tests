@@ -5,16 +5,16 @@ import {Dashboardcreation} from './dashboardcreation.po';
 export class Selectedboard {
 
     locatorShowMenu = by.css('.board-header-btn.mod-show-menu');
-    locatorMenu_More = by.css('.board-menu-navigation-item-link.js-open-more');
-    locatorMenu_More_CloseBoard = by.css('.board-menu-navigation-item-link.js-close-board')
+    locatorMenuMore = by.css('.board-menu-navigation-item-link.js-open-more');
+    locatorMenuMoreCloseBoard = by.css('.board-menu-navigation-item-link.js-close-board')
     locatorConfirmCloseBoard = by.css('.js-confirm.full.negate');
     locatorPermanentlyDeleteBoardLink = by.css('.quiet.js-delete');
     private db: Dashboardcreation;
 
     async deleteDashBoard() {
-        const itemMore = element(this.locatorMenu_More);
+        const itemMore = element(this.locatorMenuMore);
         await CommonActions.click(itemMore);
-        const itemCloseBoard = element(this.locatorMenu_More_CloseBoard);
+        const itemCloseBoard = element(this.locatorMenuMoreCloseBoard);
         await CommonActions.click(itemCloseBoard);
         const itemConfirmCloseBoard = element(this.locatorConfirmCloseBoard);
         await CommonActions.click(itemConfirmCloseBoard);
