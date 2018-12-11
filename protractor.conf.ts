@@ -6,7 +6,7 @@ export let config: Config = {
         browserName: 'chrome',
     },
     specs: [
-        './e2e/specs/dashboard.spec.js',
+        './e2e/specs/deleteDashboard.spec.js',
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
     SELENIUM_PROMISE_MANAGER: false,
