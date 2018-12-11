@@ -1,23 +1,40 @@
-import {browser, by, element} from 'protractor';
+import {by, element} from 'protractor';
+import {CommonActions} from '../utils/CommonActions';
+import {Dashboardcreation} from './dashboardcreation.po';
+import {Selectedboard} from './selectedboard.po';
 
-import {Helper} from '../utils/helper';
-
+/**
+ * This class is the beginning for select of create a board, also can create a team.
+ */
 export class Dashboard {
-  loadPage() {
-    return browser.get('https://trello.com/nestorotondo/boards');
-  }
 
-  async getMemberInitials() {
-    await Helper.browserWait(element(by.css('span.member-initials')), 30000);
-    return element(by.css('span.member-initials')).getText();
-  }
+    bydashboardResumeButton = by.className('header-btn-text');
+    byAddButton = by.css('.quiet-button.js-add-board');
+    locatorBoardsButton = by.css('.js-boards-menu');
+    dashboardcreate: Dashboardcreation;
 
-  async tryToCreateNewBoard(name: string) {
-    await element(by.css('a.mod-add')).click();
-    await element(by.css('.subtle-input')).sendKeys(name);
-    await element(by.css('button[title="blue"]')).click();
-    await element(by.css('button[type="submit"]')).click();
-    await Helper.browserWait(element(by.css(`div[title="${name}"]`)), 30000);
-    return element(by.css(`div[title="${name}"]`)).isPresent();
-  }
+    async getMemberInitials() {
+        const initialsNameLabel = element(by.css('span.member-initials'));
+        await CommonActions.waitVisibility(initialsNameLabel);
+        return initialsNameLabel.getText();
+    }
+
+    /**
+     * This make the creation of the dashboard.
+     * @param data { background: string; privacy: string; title: string }
+     */
+    async createDashBoard(data: any) {
+        const plusButton = element(this.locatorBoardsButton);
+        await CommonActions.click(plusButton);
+        const addBoardButton = element(this.byAddButton);
+        await CommonActions.click(addBoardButton);
+        this.dashboardcreate = new Dashboardcreation();
+        await this.dashboardcreate.setDashBoard(data);
+    }
+
+    async selectDashBoard(title: string) {
+        const dashBoard = element(by.css(`[class="board-tile-details-name"][title="${title}"]`));
+        await CommonActions.click(dashBoard);
+        return new Selectedboard();
+    }
 }
