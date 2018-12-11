@@ -1,7 +1,6 @@
 import {browser, by, element} from 'protractor';
 import {Dashboard} from './dashboard.po';
 import {CommonActions} from '../utils/CommonActions';
-import data from '../utils/environment.json';
 
 export class Login {
     URL: string;
@@ -23,9 +22,13 @@ export class Login {
         return CommonActions.getText(titlePage);
     }
 
-    async LogInWithUser() {
-        await CommonActions.setValue(element(this.locatorUserTextInput), data.member1.user);
-        await CommonActions.setValue(element(this.locatorPassTextInput), data.member1.pass);
+    /**
+     * This method log in with an specified user.
+     * @param user Input.
+     */
+    async LogInWithUser(user) {
+        await CommonActions.setValue(element(this.locatorUserTextInput), user.user);
+        await CommonActions.setValue(element(this.locatorPassTextInput), user.pass);
         await CommonActions.click(element(this.locatorLoginButton));
         return new Dashboard();
     }
