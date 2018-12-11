@@ -20,7 +20,7 @@ export class Login {
 
     async getTitlePage() {
         const titlePage = element(by.css('h1'));
-        return await CommonActions.getText(titlePage);
+        return CommonActions.getText(titlePage);
     }
 
     async LogInWithUser() {
