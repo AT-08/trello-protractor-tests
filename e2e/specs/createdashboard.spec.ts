@@ -1,6 +1,5 @@
 import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
-import {Selectedboard} from '../pages/selectedboard.po';
 
 describe('', () => {
     let board: Dashboard;

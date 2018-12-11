@@ -11,7 +11,7 @@ export class Dashboard {
     bydashboardResumeButton = by.className('header-btn-text');
     byAddButton = by.css('.quiet-button.js-add-board');
     locatorBoardsButton = by.css('.js-boards-menu');
-    private db: Dashboardcreation;
+    db: Dashboardcreation;
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
