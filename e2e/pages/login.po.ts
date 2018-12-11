@@ -24,8 +24,8 @@ export class Login {
     }
 
     async LogInWithUser() {
-        await CommonActions.setValue(element(this.locatorUserTextInput), data.user2);
-        await CommonActions.setValue(element(this.locatorPassTextInput), data.pass2);
+        await CommonActions.setValue(element(this.locatorUserTextInput), data.member1.user);
+        await CommonActions.setValue(element(this.locatorPassTextInput), data.member1.pass);
         await CommonActions.click(element(this.locatorLoginButton));
         return new Dashboard();
     }
