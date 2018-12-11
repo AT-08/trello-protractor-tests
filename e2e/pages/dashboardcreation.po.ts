@@ -16,7 +16,7 @@ export class Dashboardcreation {
     async setDashBoard(data: any) {
         this.fillData(data);
         const createDashboardButton = element(this.locatorDashboardButton);
-        await CommonActions.waitVisibilityandSubmit(createDashboardButton);
+        await CommonActions.submit(createDashboardButton);
     }
 
     /**
