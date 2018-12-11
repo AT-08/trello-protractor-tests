@@ -11,7 +11,7 @@ export class Dashboard {
     bydashboardResumeButton = by.className('header-btn-text');
     byAddButton = by.css('.quiet-button.js-add-board');
     locatorBoardsButton = by.css('.js-boards-menu');
-    db: Dashboardcreation;
+    dashboardcreate: Dashboardcreation;
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
@@ -28,8 +28,8 @@ export class Dashboard {
         await CommonActions.click(plusButton);
         const addBoardButton = element(this.byAddButton);
         await CommonActions.click(addBoardButton);
-        this.db = new Dashboardcreation();
-        await this.db.setDashBoard(data);
+        this.dashboardcreate = new Dashboardcreation();
+        await this.dashboardcreate.setDashBoard(data);
     }
 
     async selectDashBoard(title: string) {
