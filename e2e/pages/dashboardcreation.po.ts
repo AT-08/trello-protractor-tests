@@ -7,14 +7,14 @@ import {CommonActions} from '../utils/CommonActions';
 export class Dashboardcreation {
     locatorDashboardButton = by.css('.create-board-form.button.primary');
     locatorTitleTextInput = by.css('.subtle-input');
-    locatorPrivacyButton = by.css('[class="subtle-chooser-trigger unstyled-button vis-chooser-trigger"]');
+    locatorPrivacyButton = by.css('.subtle-chooser-trigger.unstyled-button vis-chooser-trigger');
 
     /**
      * This set the data for fill the dashboard form and create the button.
      * @param data { background: string; privacy: string; title: string }
      */
     async setDashBoard(data: any) {
-        this.fillData(data);
+        await this.fillData(data);
         const createDashboardButton = element(this.locatorDashboardButton);
         await CommonActions.submit(createDashboardButton);
     }
@@ -23,15 +23,15 @@ export class Dashboardcreation {
      * Make a map for fill the dashboard.
      * @param data { background: string; privacy: string; title: string }
      */
-    private fillData(data: any) {
+    async fillData(data: any) {
         const fillProjectInformation = {
             title: () => this.setdashtitle(data.title),
             background: () => this.setbackground(data.background),
             privacy: () => this.setprivacy(data.privacy),
         };
-        Object.keys(data).forEach((key) => {
-            fillProjectInformation[key].call();
-        });
+        await Promise.all(Object.keys(data).map(async (key) => {
+            await fillProjectInformation[key].call();
+        }));
     }
 
     /**
@@ -59,7 +59,7 @@ export class Dashboardcreation {
     private async setprivacy(privacy: string) {
         const privacyButton = element(this.locatorPrivacyButton);
         await CommonActions.click(privacyButton);
-        const selectPrivacy = element(by.css(`[class$="icon-${privacy}"]`));
+        const selectPrivacy = element(by.xpath(`//span[@class="icon-sm icon-${privacy}"]/parent::a`));
         await CommonActions.click(selectPrivacy);
     }
 }

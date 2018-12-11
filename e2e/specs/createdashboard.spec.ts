@@ -15,7 +15,7 @@ describe('', () => {
         const data = {
             title: 'Apepetoro',
             background: 'green',
-            privacy: 'Public',
+            privacy: 'public',
         };
         board = await login.LogInWithUser(user.member1);
         await board.createDashBoard(data);
