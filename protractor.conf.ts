@@ -9,9 +9,13 @@ export let config: Config = {
         './e2e/specs/dashboard.spec.js',
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
+    SELENIUM_PROMISE_MANAGER: false,
     noGlobals: true,
-    onPrepare: () => {
-        browser.waitForAngularEnabled(false);
-        browser.manage().timeouts().implicitlyWait(15000);
+    onPrepare: async () => {
+        await browser.waitForAngularEnabled(false);
+        await browser.manage().timeouts().implicitlyWait(15000);
+    },
+    jasmineNodeOpts: {
+        defaultTimeoutInterval: 30000,
     },
 };

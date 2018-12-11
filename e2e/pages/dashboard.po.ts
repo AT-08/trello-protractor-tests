@@ -1,6 +1,7 @@
 import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
+import {Selectedboard} from './selectedboard.po';
 
 /**
  * This class is the beginning for select of create a board, also can create a team.
@@ -8,9 +9,9 @@ import {Dashboardcreation} from './dashboardcreation.po';
 export class Dashboard {
 
     bydashboardResumeButton = by.className('header-btn-text');
-    byAddButton = by.css('a.mod-add');
-
-    private db: Dashboardcreation;
+    byAddButton = by.css('.quiet-button.js-add-board');
+    locatorBoardsButton = by.css('.js-boards-menu');
+    dashboardcreate: Dashboardcreation;
 
     async getMemberInitials() {
         const initialsNameLabel = element(by.css('span.member-initials'));
@@ -23,8 +24,17 @@ export class Dashboard {
      * @param data { background: string; privacy: string; title: string }
      */
     async createDashBoard(data: any) {
-        await CommonActions.click(element(this.byAddButton));
-        this.db = new Dashboardcreation();
-        await this.db.setDashBoard(data);
+        const plusButton = element(this.locatorBoardsButton);
+        await CommonActions.click(plusButton);
+        const addBoardButton = element(this.byAddButton);
+        await CommonActions.click(addBoardButton);
+        this.dashboardcreate = new Dashboardcreation();
+        await this.dashboardcreate.setDashBoard(data);
+    }
+
+    async selectDashBoard(title: string) {
+        const dashBoard = element(by.css(`[class="board-tile-details-name"][title="${title}"]`));
+        await CommonActions.click(dashBoard);
+        return new Selectedboard();
     }
 }
