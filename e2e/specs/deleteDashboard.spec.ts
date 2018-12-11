@@ -13,14 +13,8 @@ describe('', () => {
     });
 
     it('When user logged in his dashboard, he can create new board', async () => {
-        const data = {
-            title: 'Apepetoro',
-            background: 'green',
-            privacy: 'public',
-        };
         board = await login.LogInWithUser();
-        // await board.createDashBoard(data);
-        selectedBoard = await board.selectDashBoard('abcprotro');
+        selectedBoard = await board.selectDashBoard('test N');
         await selectedBoard.deleteDashBoard();
     });
 });

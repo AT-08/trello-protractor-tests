@@ -1,7 +1,7 @@
 import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
-import {Selectedboard} from "./selectedboard.po";
+import {Selectedboard} from './selectedboard.po';
 
 /**
  * This class is the beginning for select of create a board, also can create a team.
@@ -9,8 +9,8 @@ import {Selectedboard} from "./selectedboard.po";
 export class Dashboard {
 
     bydashboardResumeButton = by.className('header-btn-text');
-    byAddButton = by.css('a.mod-add');
-
+    byAddButton = by.css('.quiet-button.js-add-board');
+    locatorBoardsButton = by.css('.js-boards-menu');
     private db: Dashboardcreation;
 
     async getMemberInitials() {
@@ -24,7 +24,10 @@ export class Dashboard {
      * @param data { background: string; privacy: string; title: string }
      */
     async createDashBoard(data: any) {
-        await CommonActions.click(element(this.byAddButton));
+        const plusButton = element(this.locatorBoardsButton);
+        await CommonActions.click(plusButton);
+        const addBoardButton = element(this.byAddButton);
+        await CommonActions.click(addBoardButton);
         this.db = new Dashboardcreation();
         await this.db.setDashBoard(data);
     }
