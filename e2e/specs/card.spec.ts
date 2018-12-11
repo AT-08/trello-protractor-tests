@@ -11,13 +11,14 @@ describe('', () => {
     const url = 'https://trello.com/login?returnUrl=%2F';
     beforeEach(() => {
         login = new Login(url);
+
     });
 
     it('When user logged in his dashboard, he can selected a one  board', async () => {
         await login.loadPage();
         board = await login.LogInWithUser();
         selectedBoard = await board.selectDashBoard('ae');
-
-        await card.createCard('new card');
+        await selectedBoard.selectedCard();
+        card.createCard('new carde');
     });
 });

@@ -25,5 +25,8 @@ export class Selectedboard {
         await CommonActions.click(itemConfirmCloseBoard);
     }
 
-
+    async selectedCard() {
+        const anotherCard = element(this.locatorAddAnotherCardLink);
+        await CommonActions.click(anotherCard);
+            }
 }

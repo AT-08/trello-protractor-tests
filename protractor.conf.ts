@@ -9,7 +9,7 @@ export let config: Config = {
         './e2e/specs/card.spec.js',
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    SELENIUM_PROMISE_MANAGER: false,
+    // SELENIUM_PROMISE_MANAGER: false,
     noGlobals: true,
     onPrepare: async () => {
         await browser.waitForAngularEnabled(false);
