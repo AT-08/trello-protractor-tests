@@ -10,8 +10,8 @@ export let config: Config = {
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
     noGlobals: true,
-    onPrepare: () => {
-        browser.waitForAngularEnabled(false);
-        browser.manage().timeouts().implicitlyWait(15000);
+    onPrepare: async () => {
+        await browser.waitForAngularEnabled(false);
+        await browser.manage().timeouts().implicitlyWait(15000);
     },
 };

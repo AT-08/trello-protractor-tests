@@ -1,6 +1,7 @@
 import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
+import {Selectedboard} from "./selectedboard.po";
 
 /**
  * This class is the beginning for select of create a board, also can create a team.
@@ -26,5 +27,11 @@ export class Dashboard {
         await CommonActions.click(element(this.byAddButton));
         this.db = new Dashboardcreation();
         await this.db.setDashBoard(data);
+    }
+
+    async selectDashBoard(title: string) {
+        const dashBoard = element(by.css(`[class="board-tile-details-name"][title="${title}"]`));
+        await CommonActions.click(dashBoard);
+        return new Selectedboard();
     }
 }
