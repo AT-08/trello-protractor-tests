@@ -7,15 +7,15 @@ describe('', () => {
     const url = 'https://trello.com/login?returnUrl=%2F';
     beforeEach(async () => {
         login = new Login(url);
+        await login.loadPage();
     });
 
-    it('its possible delelte a board', async () => {
+    it('When user logged in his dashboard, he can create new board', async () => {
         const data = {
             title: 'Apepetoro',
             background: 'green',
-            privacy: 'public',
+            privacy: 'Public',
         };
-        await login.loadPage();
         board = await login.LogInWithUser();
         await board.createDashBoard(data);
     });

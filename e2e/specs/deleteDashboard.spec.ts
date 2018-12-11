@@ -12,9 +12,9 @@ describe('', () => {
         await login.loadPage();
     });
 
-    it('When user logged in his dashboard, he can create new board', async () => {
+    it('its possible delelte a board', async () => {
         board = await login.LogInWithUser();
-        selectedBoard = await board.selectDashBoard('test N');
+        selectedBoard = await board.selectDashBoard('Apepetoro');
         await selectedBoard.deleteDashBoard();
     });
 });

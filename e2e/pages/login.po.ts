@@ -19,8 +19,8 @@ export class Login {
     }
 
     async getTitlePage() {
-        await CommonActions.waitVisibility(element(by.css('h1')))
-        return element(by.css('h1')).getText();
+        const titlePage = element(by.css('h1'));
+        return CommonActions.getText(titlePage);
     }
 
     async LogInWithUser() {
