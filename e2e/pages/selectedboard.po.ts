@@ -1,5 +1,8 @@
 import {by, element} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
+import {Card} from '../pages/card.po';
+
+
 
 export class Selectedboard {
 
@@ -8,6 +11,7 @@ export class Selectedboard {
     locatorMenuMoreCloseBoard = by.css('.board-menu-navigation-item-link.js-close-board')
     locatorConfirmCloseBoard = by.css('.js-confirm.full.negate');
     locatorPermanentlyDeleteBoardLink = by.css('.quiet.js-delete');
+    locatorAddAnotherCardLink = by.css('.js-add-another-card');
 
     async deleteDashBoard() {
         const itemMore = element(this.locatorMenuMore);
@@ -20,5 +24,6 @@ export class Selectedboard {
         await CommonActions.click(permanentlyDeleteBoard);
         await CommonActions.click(itemConfirmCloseBoard);
     }
+
 
 }

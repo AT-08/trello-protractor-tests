@@ -4,9 +4,9 @@ import {CommonActions} from '../utils/CommonActions';
 export class Card {
     URL: string;
 
-    locatorAddAnotherCardLink = by.css('[class="class="js-add-another-card"]');
-    locatorTitleTextAreaInput = by.css('[class="list-card-composer-textarea js-card-title"]');
-    locatorAddCardButton = by.css('[class="primary confirm mod-compact js-add-card"][value="Add Card"]');
+    locatorAddAnotherCardLink = by.css('.js-add-another-card');
+    locatorTitleTextAreaInput = by.css('.list-card-composer-textarea js-card-title');
+    locatorAddCardButton = by.css('.primary confirm mod-compact js-add-card');
 
     constructor(url: string) {
         this.URL = url;

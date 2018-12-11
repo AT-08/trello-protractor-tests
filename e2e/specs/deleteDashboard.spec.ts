@@ -14,7 +14,7 @@ describe('', () => {
 
     it('its possible delelte a board', async () => {
         board = await login.LogInWithUser();
-        selectedBoard = await board.selectDashBoard('Demo for Abel');
+        selectedBoard = await board.selectDashBoard('abc1');
         await selectedBoard.deleteDashBoard();
     });
 });
