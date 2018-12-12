@@ -13,7 +13,7 @@ export class Selectedboard {
     menuMoreCloseBoard = by.css('.js-close-board');
     confirmCloseBoard = by.css('.js-confirm.full.negate');
     permanentlyDeleteBoardLink = by.css('.quiet.js-delete');
-    AddAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
+    addAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
     addMemberButton = by.css('.icon-add-member');
 
     addListButton = by.css('.open-add-list.js-open-add-list');
@@ -53,7 +53,7 @@ export class Selectedboard {
     }
 
     async selectedCard() {
-        await CommonActions.click(this.AddAnotherCardLink);
+        await CommonActions.click(this.addAnotherCardLink);
         return new Card();
     }
 }

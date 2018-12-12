@@ -4,7 +4,7 @@ import {Card} from '../pages/card.po';
 import {Selectedboard} from '../pages/selectedboard.po';
 import user from '../utils/environment.json';
 
-describe('', () => {
+describe('create a one card', () => {
     let board: Dashboard;
     let login: Login;
     let selectedBoard: Selectedboard;
@@ -14,10 +14,14 @@ describe('', () => {
         login = new Login(url);
         await login.loadPage();
         board = await login.LogInWithUser(user.owner1);
-        selectedBoard = await board.selectDashBoard('ae');
+        const data = {
+            title: 'Apublic',
+        };
+        await board.createDashBoard(data);
+        selectedBoard = new Selectedboard();
     });
 
-    it('When user selected a one  board, he can to create a new card', async () => {
+    it('When I selected a one board, I can to create a new card', async () => {
         card = await selectedBoard.selectedCard();
         await card.createCard('new card for testing  automation');
     });
