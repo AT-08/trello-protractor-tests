@@ -1,5 +1,5 @@
-import {browser, element, ElementFinder, ExpectedConditions, ProtractorBy} from 'protractor';
-import {By} from "selenium-webdriver";
+import {browser, element, ExpectedConditions} from 'protractor';
+import {By} from 'selenium-webdriver';
 
 /**
  * This is the Time out of the explicit wait.

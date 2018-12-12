@@ -1,4 +1,4 @@
-import {by, element} from 'protractor';
+import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
 import {Selectedboard} from './selectedboard.po';
