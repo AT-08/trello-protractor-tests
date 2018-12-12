@@ -8,10 +8,7 @@
     "tsc": "tsc",
     "pretest": "npm run tsc",
     "test": "protractor ./dist/out-tsc/protractor.conf.js",
-    "debug": "node --inspect-brk ./node_modules/.bin/protractor asyncAwait/protractor.conf.js",
-    "wstart": "webdriver-manager start",
-    "wupdate": "webdriver-manager update ",
-    "con": "concurrently -k \"npm:wstart\" \"npm:test\""
+    "debug": "node --inspect-brk ./node_modules/.bin/protractor asyncAwait/protractor.conf.js"
   },
   "repository": {
     "type": "git",
