@@ -10,7 +10,7 @@ export class Selectedboard {
     permanentlyDeleteBoardLink = by.css('.quiet.js-delete');
 
     addMemberButton = by.css('.icon-add-member');
-    findMemberInputText = by.css('.autocomplete-input-container');
+    findMemberInputText = by.css('.autocomplete-input');
     invitationMessageInput = by.css('.js-invitation-message');
     sendInvitationButton = by.css('.autocomplete-btn.primary');
 
@@ -29,7 +29,9 @@ export class Selectedboard {
     async addMember(user, description: string) {
         await CommonActions.click(this.addMemberButton);
         await CommonActions.setValue(this.findMemberInputText, user.user);
-        await CommonActions.click(by.cssContainingText('.full-name', user.user));
+        const memberContainer = by.cssContainingText('.full-name', user.user);
+        await CommonActions.waitVisibility(memberContainer);
+        await CommonActions.click(memberContainer);
         await CommonActions.setValue(this.invitationMessageInput, description);
         await CommonActions.click(this.sendInvitationButton);
     }
