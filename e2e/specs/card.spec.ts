@@ -4,7 +4,7 @@ import {Card} from '../pages/card.po';
 import {Selectedboard} from '../pages/selectedboard.po';
 import user from '../utils/environment.json';
 
-describe('Create card', () => {
+describe('Create a one card', () => {
     let board: Dashboard;
     let login: Login;
     let selectedBoard: Selectedboard;

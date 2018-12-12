@@ -2,7 +2,6 @@ import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
 export class Card {
-    URL: string;
     titleTextAreaInput = by.css('.list-card-composer-textarea.js-card-title');
     addCardButton = by.css('.js-add-card');
 
