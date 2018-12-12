@@ -17,7 +17,7 @@ describe('', () => {
             background: 'pink',
             privacy: 'public',
         };
-        board = await login.LogInWithUser(user.member1);
+        board = await login.LogInWithUser(user.owner1);
         await board.createDashBoard(data);
     });
 });

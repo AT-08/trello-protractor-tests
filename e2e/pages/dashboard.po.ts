@@ -34,6 +34,7 @@ export class Dashboard {
         await CommonActions.click(this.addButton);
         this.createDashboard = new Dashboardcreation();
         await this.createDashboard.setDashBoard(data);
+
     }
 
     async selectDashBoard(title: string) {
