@@ -1,6 +1,9 @@
 import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
+/**
+ * This class is the Page object of the page after selecting a board.
+ */
 export class Selectedboard {
 
     showMenu = by.css('.board-header-btn.mod-show-menu');
@@ -18,6 +21,9 @@ export class Selectedboard {
     listNameInput = by.css('.list-name-input');
     saveListNameButton = by.css('.js-save-edit');
 
+    /**
+     * This method delete permanently the respective dashboard.
+     */
     async deleteDashBoard() {
         await CommonActions.click(this.menuMore);
         await CommonActions.click(this.menuMoreCloseBoard);
@@ -26,6 +32,11 @@ export class Selectedboard {
         await CommonActions.click(this.confirmCloseBoard);
     }
 
+    /**
+     * This method invite a member to the current dashboard.
+     * @param user Name to invite.
+     * @param description For the invite.
+     */
     async addMember(user, description: string) {
         await CommonActions.click(this.addMemberButton);
         await CommonActions.setValue(this.findMemberInputText, user.user);
@@ -36,6 +47,10 @@ export class Selectedboard {
         await CommonActions.click(this.sendInvitationButton);
     }
 
+    /**
+     * This method add a list to the current dashboard.
+     * @param listTitle Name of the list.
+     */
     async addList(listTitle: string) {
         await CommonActions.click(this.addListButton);
         await CommonActions.setValue(this.listNameInput, listTitle);
