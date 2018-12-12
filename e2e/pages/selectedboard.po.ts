@@ -1,54 +1,42 @@
-import {by, element} from 'protractor';
+import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
 export class Selectedboard {
 
-    locatorShowMenu = by.css('.board-header-btn.mod-show-menu');
-    locatorMenuMore = by.css('.board-menu-navigation-item-link.js-open-more');
-    locatorMenuMoreCloseBoard = by.css('.board-menu-navigation-item-link.js-close-board');
-    locatorConfirmCloseBoard = by.css('.js-confirm.full.negate');
-    locatorPermanentlyDeleteBoardLink = by.css('.quiet.js-delete');
+    showMenu = by.css('.board-header-btn.mod-show-menu');
+    menuMore = by.css('.js-open-more');
+    menuMoreCloseBoard = by.css('.js-close-board')
+    confirmCloseBoard = by.css('.js-confirm.full.negate');
+    permanentlyDeleteBoardLink = by.css('.quiet.js-delete');
 
-    locatorAddMember = by.css('.icon-add-member');
-    locatorFindInputText = by.css('.autocomplete-input-container');
-    locatorInvitationMessageInput = by.css('.js-invitation-message');
-    locatorSendInvitationButton = by.css('.autocomplete-btn.primary');
+    addMemberButton = by.css('.icon-add-member');
+    findMemberInputText = by.css('.autocomplete-input-container');
+    invitationMessageInput = by.css('.js-invitation-message');
+    sendInvitationButton = by.css('.autocomplete-btn.primary');
 
-    locatorAddListButton = by.css('.open-add-list.js-open-add-list');
-    locatorListNameInput = by.css('.list-name-input');
-    locatorSaveListNameButton = by.css('.js-save-edit');
+    addListButton = by.css('.open-add-list.js-open-add-list');
+    listNameInput = by.css('.list-name-input');
+    saveListNameButton = by.css('.js-save-edit');
 
     async deleteDashBoard() {
-        const itemMore = element(this.locatorMenuMore);
-        await CommonActions.click(itemMore);
-        const itemCloseBoard = element(this.locatorMenuMoreCloseBoard);
-        await CommonActions.click(itemCloseBoard);
-        const itemConfirmCloseBoard = element(this.locatorConfirmCloseBoard);
-        await CommonActions.click(itemConfirmCloseBoard);
-        const permanentlyDeleteBoard = element(this.locatorPermanentlyDeleteBoardLink);
-        await CommonActions.click(permanentlyDeleteBoard);
-        await CommonActions.click(itemConfirmCloseBoard);
+        await CommonActions.click(this.menuMore);
+        await CommonActions.click(this.menuMoreCloseBoard);
+        await CommonActions.click(this.confirmCloseBoard);
+        await CommonActions.click(this.permanentlyDeleteBoardLink);
+        await CommonActions.click(this.confirmCloseBoard);
     }
 
     async addMember(user, description: string) {
-        const addMemberButton = element(this.locatorAddMember);
-        await CommonActions.click(addMemberButton);
-        const findMemberInputText = element(this.locatorFindInputText);
-        await CommonActions.setValue(findMemberInputText, user.user);
-        const foundName = element(by.cssContainingText('.full-name', user.user));
-        await CommonActions.click(foundName);
-        const invitationMessageInput = element(this.locatorInvitationMessageInput);
-        await CommonActions.setValue(invitationMessageInput, description);
-        const sendInvitationButton = element(this.locatorSendInvitationButton);
-        await CommonActions.click(sendInvitationButton);
+        await CommonActions.click(this.addMemberButton);
+        await CommonActions.setValue(this.findMemberInputText, user.user);
+        await CommonActions.click(by.cssContainingText('.full-name', user.user));
+        await CommonActions.setValue(this.invitationMessageInput, description);
+        await CommonActions.click(this.sendInvitationButton);
     }
 
     async addList(listTitle: string) {
-        const addListButton = element(this.locatorAddListButton);
-        await CommonActions.click(addListButton);
-        const listNameInput = element(this.locatorListNameInput);
-        await CommonActions.setValue(listNameInput, listTitle);
-        const saveListNamebutton = element(this.locatorSaveListNameButton);
-        await CommonActions.click(saveListNamebutton);
+        await CommonActions.click(this.addListButton);
+        await CommonActions.setValue(this.listNameInput, listTitle);
+        await CommonActions.click(this.saveListNameButton);
     }
 }

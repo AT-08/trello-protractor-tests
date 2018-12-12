@@ -13,8 +13,8 @@ describe('', () => {
 
     it('When user logged in his dashboard, he can create new board', async () => {
         const data = {
-            title: 'Apepetoro',
-            background: 'green',
+            title: 'Apublic',
+            background: 'pink',
             privacy: 'public',
         };
         board = await login.LogInWithUser(user.member1);

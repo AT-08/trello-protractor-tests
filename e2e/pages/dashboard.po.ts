@@ -1,4 +1,4 @@
-import {by, element} from 'protractor';
+import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
 import {Selectedboard} from './selectedboard.po';
@@ -8,15 +8,15 @@ import {Selectedboard} from './selectedboard.po';
  */
 export class Dashboard {
 
-    bydashboardResumeButton = by.className('header-btn-text');
-    byAddButton = by.css('.quiet-button.js-add-board');
-    locatorBoardsButton = by.css('.js-boards-menu');
-    dashboardcreate: Dashboardcreation;
+    dashboardResumeButton = by.className('header-btn-text');
+    addButton = by.css('.quiet-button.js-add-board');
+    boardsButton = by.css('.js-boards-menu');
+    createDashboard: Dashboardcreation;
 
     async getMemberInitials() {
-        const initialsNameLabel = element(by.css('span.member-initials'));
-        await CommonActions.waitVisibility(initialsNameLabel);
-        return initialsNameLabel.getText();
+        const memberInitials = by.css('span.member-initials');
+        await CommonActions.waitVisibility(memberInitials);
+        return CommonActions.getText(memberInitials);
     }
 
     /**
@@ -24,16 +24,14 @@ export class Dashboard {
      * @param data { background: string; privacy: string; title: string }
      */
     async createDashBoard(data: any) {
-        const plusButton = element(this.locatorBoardsButton);
-        await CommonActions.click(plusButton);
-        const addBoardButton = element(this.byAddButton);
-        await CommonActions.click(addBoardButton);
-        this.dashboardcreate = new Dashboardcreation();
-        await this.dashboardcreate.setDashBoard(data);
+        await CommonActions.click(this.boardsButton);
+        await CommonActions.click(this.addButton);
+        this.createDashboard = new Dashboardcreation();
+        await this.createDashboard.setDashBoard(data);
     }
 
     async selectDashBoard(title: string) {
-        const dashBoard = element(by.css(`[class="board-tile-details-name"][title="${title}"]`));
+        const dashBoard = by.css(`[class="board-tile-details-name"][title="${title}"]`);
         await CommonActions.click(dashBoard);
         return new Selectedboard();
     }
