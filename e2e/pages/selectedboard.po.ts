@@ -1,6 +1,7 @@
 import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Member} from './member.po';
+import {Card} from './card.po';
 
 /**
  * This class is the Page object of the page after selecting a board.
@@ -12,7 +13,7 @@ export class Selectedboard {
     menuMoreCloseBoard = by.css('.js-close-board');
     confirmCloseBoard = by.css('.js-confirm.full.negate');
     permanentlyDeleteBoardLink = by.css('.quiet.js-delete');
-
+    addAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
     addMemberButton = by.css('.icon-add-member');
 
     addListButton = by.css('.open-add-list.js-open-add-list');
@@ -49,5 +50,10 @@ export class Selectedboard {
         await CommonActions.click(this.addListButton);
         await CommonActions.setValue(this.listNameInput, listTitle);
         await CommonActions.click(this.saveListNameButton);
+    }
+
+    async selectedCard() {
+        await CommonActions.click(this.addAnotherCardLink);
+        return new Card();
     }
 }
