@@ -1,32 +1,59 @@
-import {by, element} from 'protractor';
+import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
-import {Card} from '../pages/card.po';
+import {Member} from './member.po';
+import {Card} from './card.po';
 
-
+/**
+ * This class is the Page object of the page after selecting a board.
+ */
 export class Selectedboard {
 
-    locatorShowMenu = by.css('.board-header-btn.mod-show-menu');
-    locatorMenuMore = by.css('.board-menu-navigation-item-link.js-open-more');
-    locatorMenuMoreCloseBoard = by.css('.board-menu-navigation-item-link.js-close-board')
-    locatorConfirmCloseBoard = by.css('.js-confirm.full.negate');
-    locatorPermanentlyDeleteBoardLink = by.css('.quiet.js-delete');
-    locatorAddAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
+    showMenu = by.css('.board-header-btn.mod-show-menu');
+    menuMore = by.css('.js-open-more');
+    menuMoreCloseBoard = by.css('.js-close-board');
+    confirmCloseBoard = by.css('.js-confirm.full.negate');
+    permanentlyDeleteBoardLink = by.css('.quiet.js-delete');
+    AddAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
+    addMemberButton = by.css('.icon-add-member');
 
+    addListButton = by.css('.open-add-list.js-open-add-list');
+    listNameInput = by.css('.list-name-input');
+    saveListNameButton = by.css('.js-save-edit');
+    private member: Member;
+
+    /**
+     * This method delete permanently the respective dashboard.
+     */
     async deleteDashBoard() {
-        const itemMore = element(this.locatorMenuMore);
-        await CommonActions.click(itemMore);
-        const itemCloseBoard = element(this.locatorMenuMoreCloseBoard);
-        await CommonActions.click(itemCloseBoard);
-        const itemConfirmCloseBoard = element(this.locatorConfirmCloseBoard);
-        await CommonActions.click(itemConfirmCloseBoard);
-        const permanentlyDeleteBoard = element(this.locatorPermanentlyDeleteBoardLink);
-        await CommonActions.click(permanentlyDeleteBoard);
-        await CommonActions.click(itemConfirmCloseBoard);
+        await CommonActions.click(this.menuMore);
+        await CommonActions.click(this.menuMoreCloseBoard);
+        await CommonActions.click(this.confirmCloseBoard);
+        await CommonActions.click(this.permanentlyDeleteBoardLink);
+        await CommonActions.click(this.confirmCloseBoard);
+    }
+
+    /**
+     * This method invite a member to the current dashboard.
+     * @param data Input information.
+     */
+    async addMember(data: any) {
+        await CommonActions.click(this.addMemberButton);
+        this.member = new Member();
+        await this.addMember(data)
+    }
+
+    /**
+     * This method add a list to the current dashboard.
+     * @param listTitle Name of the list.
+     */
+    async addList(listTitle: string) {
+        await CommonActions.click(this.addListButton);
+        await CommonActions.setValue(this.listNameInput, listTitle);
+        await CommonActions.click(this.saveListNameButton);
     }
 
     async selectedCard() {
-        // const anotherCard = element(this.locatorAddAnotherCardLink);
-        await CommonActions.click(this.locatorAddAnotherCardLink);
+        await CommonActions.click(this.AddAnotherCardLink);
         return new Card();
     }
 }
