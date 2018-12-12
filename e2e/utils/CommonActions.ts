@@ -1,5 +1,4 @@
-import {browser, element, ExpectedConditions} from 'protractor';
-import {By} from 'selenium-webdriver';
+import {browser, element, ExpectedConditions, Locator} from 'protractor';
 
 /**
  * This is the Time out of the explicit wait.
@@ -14,7 +13,7 @@ export class CommonActions {
      * Method for click element.
      * @param locator Input.
      */
-    static async click(locator: By) {
+    static async click(locator: Locator) {
         await browser.wait(ExpectedConditions.elementToBeClickable(element(locator)), TIMEOUT);
         await element(locator).click();
     }
@@ -24,7 +23,7 @@ export class CommonActions {
      * @param locator Input.
      * @param value String to be set.
      */
-    static async setValue(locator: By, value: string) {
+    static async setValue(locator: Locator, value: string) {
         await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
         await element(locator).clear();
         await element(locator).sendKeys(value);
@@ -34,7 +33,7 @@ export class CommonActions {
      * Method wait the visibility of an locator.
      * @param locator Input.
      */
-    static async waitVisibility(locator: By) {
+    static async waitVisibility(locator: Locator) {
         await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
     }
 
@@ -42,7 +41,7 @@ export class CommonActions {
      * Method for submit a form.
      * @param locator Input.
      */
-    static async submit(locator: By) {
+    static async submit(locator: Locator) {
         await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
         await element(locator).submit();
     }
@@ -51,7 +50,7 @@ export class CommonActions {
      * Method for get the Text of a element.
      * @param locator Input.
      */
-    static async getText(locator: By) {
+    static async getText(locator: Locator) {
         await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
         await element(locator).getText();
     }
