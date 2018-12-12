@@ -1,4 +1,4 @@
-import {by, element} from 'protractor';
+import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
 /**
@@ -10,13 +10,15 @@ export class Dashboardcreation {
     privacySelect = by.css('.subtle-chooser-trigger.unstyled-button.vis-chooser-trigger');
     createBoardButton = by.css('.create-board-form button.primary');
 
+    confirmPublicButton = by.css('.js-confirm');
+
     /**
      * This set the data for fill the dashboard form and create the button.
      * @param data { background: string; privacy: string; title: string }
      */
     async setDashBoard(data: any) {
         await this.fillData(data);
-        await CommonActions.click(element(this.createBoardButton));
+        await CommonActions.click(this.createBoardButton);
     }
 
     /**
@@ -39,7 +41,7 @@ export class Dashboardcreation {
      * @param title Input.
      */
     private async setTitle(title: string) {
-        await CommonActions.setValue(element(this.titleTextField), title);
+        await CommonActions.setValue(this.titleTextField, title);
     }
 
     /**
@@ -47,7 +49,7 @@ export class Dashboardcreation {
      * @param background Color input.
      */
     private async selectBackground(background: string) {
-        await CommonActions.click(element(by.css(`button[title="${background}"]`)))
+        await CommonActions.click(by.css(`button[title="${background}"]`));
     }
 
     /**
@@ -55,8 +57,10 @@ export class Dashboardcreation {
      * @param privacy Input.
      */
     private async selectPrivacy(privacy: string) {
-        await CommonActions.click(element(this.privacySelect));
-        await CommonActions.click(element(by.css(`.icon-${privacy}`)));
-        await CommonActions.click(element(by.css('.js-confirm')));
+        await CommonActions.click(this.privacySelect);
+        await CommonActions.click(by.css(`.icon-${privacy}`));
+        if (privacy === 'public') {
+            await CommonActions.click(this.confirmPublicButton);
+        }
     }
 }
