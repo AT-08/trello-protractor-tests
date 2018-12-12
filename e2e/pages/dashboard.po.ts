@@ -19,7 +19,6 @@ export class Dashboard {
     descriptionOfTeamTextArea = by.id('org-desc');
     createTeamButton = by.css('.js-save');
 
-
     async getMemberInitials() {
         const memberInitials = by.css('span.member-initials');
         await CommonActions.waitVisibility(memberInitials);
@@ -44,7 +43,7 @@ export class Dashboard {
     }
 
     async createTeam(data: any) {
-        await CommonActions.click(this.createTeamTab)
+        await CommonActions.click(this.createTeamTab);
         await CommonActions.setValue(this.teamNameInputText, data.title);
         await CommonActions.setValue(this.descriptionOfTeamTextArea, data.description);
         await CommonActions.click(this.createTeamButton);

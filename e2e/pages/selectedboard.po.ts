@@ -2,7 +2,6 @@ import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Member} from './member.po';
 
-
 export class Selectedboard {
 
     showMenu = by.css('.board-header-btn.mod-show-menu');
