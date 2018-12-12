@@ -1,5 +1,7 @@
 import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
+import {Member} from './member.po';
+
 
 export class Selectedboard {
 
@@ -17,6 +19,7 @@ export class Selectedboard {
     addListButton = by.css('.open-add-list.js-open-add-list');
     listNameInput = by.css('.list-name-input');
     saveListNameButton = by.css('.js-save-edit');
+    private member: Member;
 
     async deleteDashBoard() {
         await CommonActions.click(this.menuMore);
@@ -26,14 +29,11 @@ export class Selectedboard {
         await CommonActions.click(this.confirmCloseBoard);
     }
 
-    async addMember(user, description: string) {
+    async addMember(data: any) {
         await CommonActions.click(this.addMemberButton);
-        await CommonActions.setValue(this.findMemberInputText, user.user);
-        const memberContainer = by.cssContainingText('.full-name', user.user);
-        await CommonActions.waitVisibility(memberContainer);
-        await CommonActions.click(memberContainer);
-        await CommonActions.setValue(this.invitationMessageInput, description);
-        await CommonActions.click(this.sendInvitationButton);
+        this.member = new Member();
+        await this.addMember(data)
+
     }
 
     async addList(listTitle: string) {
