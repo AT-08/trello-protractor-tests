@@ -62,4 +62,8 @@ export class CommonActions {
     static async waitInvisibilityOf(locator: Locator) {
         await browser.wait(ExpectedConditions.invisibilityOf(element(locator)), TIMEOUT)
     }
+
+    static async sleep() {
+        await browser.driver.sleep(500);
+    }
 }

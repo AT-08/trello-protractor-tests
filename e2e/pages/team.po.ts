@@ -18,18 +18,17 @@ export class Team {
     deleteButton = by.css('[class="quiet-button"]');
 
     sendInvitationButton = by.css('.autocomplete-btn.primary');
-    dashBoardCreation: Dashboardcreation;
+    dashboardForm = by.css('.create-board-form');
     private member: Member;
 
     /**
      * This method create a board when the user is in the team page.
-     * @param data Input Data.
      */
-    async createBoardTeam(data: any) {
+    async createBoardTeam() {
         await CommonActions.click(this.boardsTabPane);
         await CommonActions.click(this.createNewBoardButton);
-        this.dashBoardCreation = new Dashboardcreation();
-        await this.dashBoardCreation.setDashBoard(data);
+        await CommonActions.sleep();
+        return new Dashboardcreation();
     }
 
     /**

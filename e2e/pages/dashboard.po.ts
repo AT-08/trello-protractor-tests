@@ -13,8 +13,6 @@ export class Dashboard {
     addButton = by.css('.quiet-button.js-add-board');
     boardsButton = by.css('.js-boards-menu');
 
-    createDashboard: Dashboardcreation;
-
     createTeamTab = by.css('.tab__quiet__ed4jD');
     teamNameInputText = by.css('.js-autofocus.js-display-name');
     descriptionOfTeamTextArea = by.id('org-desc');
@@ -28,13 +26,11 @@ export class Dashboard {
 
     /**
      * This make the creation of the dashboard.
-     * @param data { background: string; privacy: string; title: string }
      */
-    async createDashBoard(data: any) {
+    async createDashBoard() {
         await CommonActions.click(this.boardsButton);
         await CommonActions.click(this.addButton);
-        this.createDashboard = new Dashboardcreation();
-        await this.createDashboard.setDashBoard(data);
+        return new Dashboardcreation();
     }
 
     async selectDashBoard(title: string) {
@@ -48,6 +44,14 @@ export class Dashboard {
         await CommonActions.setValue(this.teamNameInputText, data.title);
         await CommonActions.setValue(this.descriptionOfTeamTextArea, data.description);
         await CommonActions.click(this.createTeamButton);
+        return new Team();
+    }
+
+    async selectTeam(title: string) {
+        const teamNameTab = by.cssContainingText('.tab__tabText__212hs', title);
+        await CommonActions.click(teamNameTab);
+        const teamBoardsTab = by.cssContainingText('.tab__tabText__212hs', 'All team boards');
+        await CommonActions.click(teamBoardsTab);
         return new Team();
     }
 }
