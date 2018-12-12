@@ -14,11 +14,17 @@ describe('Create a one card', () => {
         login = new Login(url);
         await login.loadPage();
         board = await login.LogInWithUser(user.owner1);
-        selectedBoard = await board.selectDashBoard('ae');
+
+        const data = {
+            title: 'testfinal',
+        };
+        await board.createDashBoard(data);
+        selectedBoard = new Selectedboard();
+        await selectedBoard.addList('list test GUI');
     });
 
     it('When I selected a one board, I can to create a new card', async () => {
         card = await selectedBoard.selectedCard();
-        await card.createCard('new card for testing  automation');
+        await card.createCard('new card whit testfinal1 ');
     });
 });
