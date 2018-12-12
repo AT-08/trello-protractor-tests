@@ -14,11 +14,7 @@ describe('create a one card', () => {
         login = new Login(url);
         await login.loadPage();
         board = await login.LogInWithUser(user.owner1);
-        const data = {
-            title: 'Apublic',
-        };
-        await board.createDashBoard(data);
-        selectedBoard = new Selectedboard();
+        selectedBoard = await board.selectDashBoard('ae');
     });
 
     it('When I selected a one board, I can to create a new card', async () => {
