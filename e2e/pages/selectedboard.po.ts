@@ -3,7 +3,6 @@ import {CommonActions} from '../utils/CommonActions';
 import {Card} from '../pages/card.po';
 
 
-
 export class Selectedboard {
 
     locatorShowMenu = by.css('.board-header-btn.mod-show-menu');
@@ -11,7 +10,7 @@ export class Selectedboard {
     locatorMenuMoreCloseBoard = by.css('.board-menu-navigation-item-link.js-close-board')
     locatorConfirmCloseBoard = by.css('.js-confirm.full.negate');
     locatorPermanentlyDeleteBoardLink = by.css('.quiet.js-delete');
-    locatorAddAnotherCardLink = by.css('.js-add-another-card');
+    locatorAddAnotherCardLink = by.css('.open-card-composer.js-open-card-composer');
 
     async deleteDashBoard() {
         const itemMore = element(this.locatorMenuMore);
@@ -26,7 +25,8 @@ export class Selectedboard {
     }
 
     async selectedCard() {
-        const anotherCard = element(this.locatorAddAnotherCardLink);
-        await CommonActions.click(anotherCard);
-            }
+        // const anotherCard = element(this.locatorAddAnotherCardLink);
+        await CommonActions.click(this.locatorAddAnotherCardLink);
+        return new Card();
+    }
 }

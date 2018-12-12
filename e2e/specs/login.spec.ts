@@ -1,5 +1,6 @@
 import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
+import user from '../utils/environment.json';
 
 describe('', () => {
     let board: Dashboard;
@@ -16,7 +17,7 @@ describe('', () => {
             background: 'green',
             privacy: 'Public',
         };
-        board = await login.LogInWithUser();
+        board = await login.LogInWithUser(user.owner1);
         await board.createDashBoard(data);
     });
 });

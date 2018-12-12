@@ -1,5 +1,6 @@
 import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
+import user from '../utils/environment.json';
 
 describe('', () => {
     let board: Dashboard;
@@ -12,11 +13,11 @@ describe('', () => {
 
     it('When user logged in his dashboard, he can create new board', async () => {
         const data = {
-            title: 'Apepetoro',
-            background: 'green',
-            privacy: 'Public',
+            title: 'Apublic',
+            background: 'pink',
+            privacy: 'public',
         };
-        board = await login.LogInWithUser();
+        board = await login.LogInWithUser(user.owner1);
         await board.createDashBoard(data);
     });
 });

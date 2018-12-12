@@ -1,14 +1,13 @@
-import {browser, by, element} from 'protractor';
+import {browser, by} from 'protractor';
 import {Dashboard} from './dashboard.po';
 import {CommonActions} from '../utils/CommonActions';
-import data from '../utils/environment.json';
 
 export class Login {
     URL: string;
 
-    locatorUserTextInput = by.css('[name="user"]');
-    locatorPassTextInput = by.css('[name="password"]');
-    locatorLoginButton = by.css('[id="login"][type="submit"]');
+    userTextInput = by.css('[name="user"]');
+    passwordTextInput = by.css('[name="password"]');
+    loginButton = by.css('[id="login"][type="submit"]');
 
     constructor(url: string) {
         this.URL = url;
@@ -19,14 +18,17 @@ export class Login {
     }
 
     async getTitlePage() {
-        const titlePage = element(by.css('h1'));
-        return CommonActions.getText(titlePage);
+        return CommonActions.getText(by.css('h1'));
     }
 
-    async LogInWithUser() {
-        await CommonActions.setValue(element(this.locatorUserTextInput), data.user2);
-        await CommonActions.setValue(element(this.locatorPassTextInput), data.pass2);
-        await CommonActions.click(element(this.locatorLoginButton));
+    /**
+     * This method log in with an specified user.
+     * @param user Input.
+     */
+    async LogInWithUser(user) {
+        await CommonActions.setValue(this.userTextInput, user.user);
+        await CommonActions.setValue(this.passwordTextInput, user.pass);
+        await CommonActions.click(this.loginButton);
         return new Dashboard();
     }
 }
