@@ -50,6 +50,5 @@ export class Member {
      */
     async setDescription(description) {
         await CommonActions.setValue(this.invitationMessageInput, description);
-
     }
 }
