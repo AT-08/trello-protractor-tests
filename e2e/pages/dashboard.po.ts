@@ -2,6 +2,7 @@ import {by} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 import {Dashboardcreation} from './dashboardcreation.po';
 import {Selectedboard} from './selectedboard.po';
+import {Team} from './team.po';
 
 /**
  * This class is the beginning for select of create a board, also can create a team.
@@ -47,5 +48,6 @@ export class Dashboard {
         await CommonActions.setValue(this.teamNameInputText, data.title);
         await CommonActions.setValue(this.descriptionOfTeamTextArea, data.description);
         await CommonActions.click(this.createTeamButton);
+        return new Team();
     }
 }

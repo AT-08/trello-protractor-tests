@@ -1,5 +1,5 @@
 import {CommonActions} from '../utils/CommonActions';
-import {by} from 'protractor';
+import {browser, by} from 'protractor';
 
 /**
  * This is the Page Object for the members form.
@@ -25,7 +25,7 @@ export class Member {
      */
     private fillDataMember(data: any) {
         const fillProjectInformation = {
-            title: () => this.selectUser(data.title),
+            user: () => this.selectUser(data.user),
             description: () => this.setDescription(data.description),
         };
         return Promise.all(Object.keys(data).map(async (key) => {
@@ -37,9 +37,9 @@ export class Member {
      * This method selects a user from the search list.
      * @param user Specific user.
      */
-    async selectUser(user) {
-        await CommonActions.setValue(this.findMemberInputText, user.user);
-        const memberContainer = by.cssContainingText('.full-name', user.user);
+    async selectUser(user: string) {
+        await CommonActions.setValue(this.findMemberInputText, user);
+        const memberContainer = by.cssContainingText('.full-name', user);
         await CommonActions.waitVisibility(memberContainer);
         await CommonActions.click(memberContainer);
     }
@@ -48,7 +48,7 @@ export class Member {
      * This method set a optional description when a owner tries to invite a member to a dashboard.
      * @param description Input description.
      */
-    async setDescription(description) {
+    async setDescription(description: string) {
         await CommonActions.setValue(this.invitationMessageInput, description);
     }
 }

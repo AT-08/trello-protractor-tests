@@ -54,4 +54,12 @@ export class CommonActions {
         await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
         await element(locator).getText();
     }
+
+    /**
+     * Method for wait the invisibility of an element.
+     * @param locator Input locator.
+     */
+    static async waitInvisibilityOf(locator: Locator) {
+        await browser.wait(ExpectedConditions.invisibilityOf(element(locator)), TIMEOUT)
+    }
 }
