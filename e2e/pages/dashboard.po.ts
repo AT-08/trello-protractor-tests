@@ -11,7 +11,13 @@ export class Dashboard {
     dashboardResumeButton = by.className('header-btn-text');
     addButton = by.css('.quiet-button.js-add-board');
     boardsButton = by.css('.js-boards-menu');
+
     createDashboard: Dashboardcreation;
+
+    createTeamTab = by.css('.tab__quiet__ed4jD');
+    teamNameInputText = by.css('.js-autofocus.js-display-name');
+    descriptionOfTeamTextArea = by.id('org-desc');
+    createTeamButton = by.css('.js-save');
 
     async getMemberInitials() {
         const memberInitials = by.css('span.member-initials');
@@ -34,5 +40,12 @@ export class Dashboard {
         const dashBoard = by.css(`[class="board-tile-details-name"][title="${title}"]`);
         await CommonActions.click(dashBoard);
         return new Selectedboard();
+    }
+
+    async createTeam(data: any) {
+        await CommonActions.click(this.createTeamTab);
+        await CommonActions.setValue(this.teamNameInputText, data.title);
+        await CommonActions.setValue(this.descriptionOfTeamTextArea, data.description);
+        await CommonActions.click(this.createTeamButton);
     }
 }
