@@ -10,13 +10,14 @@ export class Team {
     boardsTabPane = by.css('[data-tab="boards"]');
     createNewBoardButton = by.css('.mod-add');
 
-    membersTabPane = by.css('[data-tab="memgbers"]');
+    membersTabPane = by.css('[data-tab="members"]');
 
     settingTabPane = by.css('[data-tab="settings"]');
-    changePrivacyButton = by.css('[class="button-link u-text-align-center"]')
+    changePrivacyButton = by.css('[class="button-link u-text-align-center"]');
     confirmDeleteTeam = by.css('.js-confirm');
     deleteButton = by.css('[class="quiet-button"]');
 
+    sendInvitationButton = by.css('.autocomplete-btn.primary');
     dashBoardCreation: Dashboardcreation;
     private member: Member;
 
@@ -38,7 +39,8 @@ export class Team {
     async inviteMember(data: any) {
         await CommonActions.click(this.membersTabPane);
         this.member = new Member();
-        await this.member.add(data)
+        await this.member.add(data);
+        await CommonActions.waitInvisibilityOf(this.sendInvitationButton);
     }
 
     /**
