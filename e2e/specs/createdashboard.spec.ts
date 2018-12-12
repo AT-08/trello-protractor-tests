@@ -1,5 +1,6 @@
 import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
+import user from '../utils/environment.json';
 
 describe('', () => {
     let board: Dashboard;
@@ -14,9 +15,9 @@ describe('', () => {
         const data = {
             title: 'Apepetoro',
             background: 'green',
-            privacy: 'Public',
+            privacy: 'public',
         };
-        board = await login.LogInWithUser();
+        board = await login.LogInWithUser(user.member1);
         await board.createDashBoard(data);
     });
 });
