@@ -1,4 +1,5 @@
-import {browser, ElementFinder, ExpectedConditions} from 'protractor';
+import {browser, element, ElementFinder, ExpectedConditions, ProtractorBy} from 'protractor';
+import {By} from "selenium-webdriver";
 
 /**
  * This is the Time out of the explicit wait.
@@ -11,47 +12,47 @@ const TIMEOUT = 30000;
 export class CommonActions {
     /**
      * Method for click element.
-     * @param element Input.
+     * @param locator Input.
      */
-    static async click(element: ElementFinder) {
-        await browser.wait(ExpectedConditions.elementToBeClickable(element), TIMEOUT);
-        await element.click();
+    static async click(locator: By) {
+        await browser.wait(ExpectedConditions.elementToBeClickable(element(locator)), TIMEOUT);
+        await element(locator).click();
     }
 
     /**
      * Method for set value.
-     * @param element Input.
+     * @param locator Input.
      * @param value String to be set.
      */
-    static async setValue(element: ElementFinder, value: string) {
-        await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
-        await element.clear();
-        await element.sendKeys(value);
+    static async setValue(locator: By, value: string) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
+        await element(locator).clear();
+        await element(locator).sendKeys(value);
     }
 
     /**
-     * Method wait the visibility of an element.
-     * @param element Input.
+     * Method wait the visibility of an locator.
+     * @param locator Input.
      */
-    static async waitVisibility(element: ElementFinder) {
-        await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
+    static async waitVisibility(locator: By) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
     }
 
     /**
      * Method for submit a form.
-     * @param element Input.
+     * @param locator Input.
      */
-    static async submit(element: ElementFinder) {
-        await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
-        await element.submit();
+    static async submit(locator: By) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
+        await element(locator).submit();
     }
 
     /**
      * Method for get the Text of a element.
-     * @param element Input.
+     * @param locator Input.
      */
-    static async getText(element: ElementFinder) {
-        await browser.wait(ExpectedConditions.visibilityOf(element), TIMEOUT);
-        await element.getText();
+    static async getText(locator: By) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(locator)), TIMEOUT);
+        await element(locator).getText();
     }
 }
