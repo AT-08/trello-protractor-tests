@@ -9,5 +9,6 @@ export class Card {
         await CommonActions.setValue(this.titleTextAreaInput, title);
         await CommonActions.waitVisibility(this.addCardButton);
         await CommonActions.click(this.addCardButton);
+        await CommonActions.sleep();
     }
 }
