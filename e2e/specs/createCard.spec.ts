@@ -2,12 +2,14 @@ import {Dashboard} from '../pages/dashboard.po';
 import {Login} from '../pages/login.po';
 import {Card} from '../pages/card.po';
 import {Selectedboard} from '../pages/selectedboard.po';
+import {Dashboardcreation} from '../pages/dashboardcreation.po';
 import user from '../utils/environment.json';
 
 describe('Create a one card', () => {
     let board: Dashboard;
-    let login: Login;
     let selectedBoard: Selectedboard;
+    let boardCreation: Dashboardcreation;
+    let login: Login;
     let card: Card;
     const url = 'https://trello.com/login?returnUrl=%2F';
     beforeEach(async () => {
@@ -16,9 +18,10 @@ describe('Create a one card', () => {
         board = await login.LogInWithUser(user.owner1);
 
         const data = {
-            title: 'testfinal',
+            title: 'Aatestfinal',
         };
-        await board.createDashBoard(data);
+        boardCreation = await board.createDashBoard();
+        await boardCreation.setDashBoard(data);
         selectedBoard = new Selectedboard();
         await selectedBoard.addList('list test GUI');
     });
