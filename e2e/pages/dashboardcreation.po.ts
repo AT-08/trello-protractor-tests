@@ -1,4 +1,4 @@
-import {by} from 'protractor';
+import {browser, by, element, ExpectedConditions} from 'protractor';
 import {CommonActions} from '../utils/CommonActions';
 
 /**
@@ -9,7 +9,7 @@ export class Dashboardcreation {
     titleTextField = by.css('.subtle-input');
     privacySelect = by.css('.subtle-chooser-trigger.unstyled-button.vis-chooser-trigger');
     createBoardButton = by.css('.create-board-form button.primary');
-
+    loadCreateBoardButton = by.css('.primary.disabled');
     confirmPublicButton = by.css('.js-confirm');
 
     /**
@@ -19,6 +19,7 @@ export class Dashboardcreation {
     async setDashBoard(data: any) {
         await this.fillData(data);
         await CommonActions.click(this.createBoardButton);
+        await CommonActions.waitVisibility(this.createBoardButton);
     }
 
     /**
