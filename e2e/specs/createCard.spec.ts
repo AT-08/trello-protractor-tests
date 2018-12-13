@@ -20,7 +20,7 @@ describe('Create a one card', () => {
         };
         await board.createDashBoard(data);
         selectedBoard = new Selectedboard();
-        await selectedBoard.addList('lsit test gui');
+        await selectedBoard.addList('list test GUI');
     });
 
     it('When I selected a one board, I can to create a new card', async () => {
