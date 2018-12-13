@@ -39,7 +39,7 @@ export class Selectedboard {
     async addMember(data: any) {
         await CommonActions.click(this.addMemberButton);
         this.member = new Member();
-        await this.addMember(data)
+        await this.member.add(data);
     }
 
     /**
