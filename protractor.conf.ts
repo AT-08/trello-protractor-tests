@@ -6,7 +6,7 @@ export let config: Config = {
         browserName: 'chrome',
     },
     specs: [
-        './e2e/specs/card.spec.js',
+        './e2e/specs/createdashboard.spec.js',
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
     noGlobals: true,
