@@ -47,7 +47,6 @@ export class Selectedboard {
      * @param listTitle Name of the list.
      */
     async addList(listTitle: string) {
-        await CommonActions.click(this.addListButton);
         await CommonActions.setValue(this.listNameInput, listTitle);
         await CommonActions.click(this.saveListNameButton);
     }
